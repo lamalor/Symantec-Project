@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Fellowship of the Ring</title>
+  <link rel="shortcut icon" href="https://vignette.wikia.nocookie.net/lotrminecraftmod/images/8/8d/OneRing2.png/revision/latest?cb=20160708170029">
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css"/>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="finalproject.html">Character<span class="logo_colour">Analysis</span></a></h1>
+          <h2>The Lord of the Rings: The Fellowship of the Ring</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="selected"><a href="finalproject.html">Home</a></li>
+          <li><a href="chord2.html">Chord Visualization</a></li>
+          <li><a href="sentiment.html">Sentiment Analysis</a></li>
+          <li><a href="links.html">Data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="banner"></div>
+      <div id="content">
+        <h1>Progressive Sentiment Analysis of Characters </h1>
+        <p> In this tab, I analyzed the sentiment of each character throughout the progression of the book. In analyzing the data, I firsed parsed through each character and mapped each character talking to the location of the book (% wise), and evaluated the sentiment through utilizing the <a href="https://github.com/cjhutto/vaderSentiment">Vader Lexicon</a>. It was then a good mapper to note the change in polarity as the book progressed. However, plotting each individual point and graphing it showcased extremely volatile lines. Therefore, I smoothed out the curves by averaging out between 0.05 portions of the book, and then 0.10 portions of the book. 
+
+        <br><br>
+        <img src="frodo.png" style="float: left; width: 38%; margin-right: 1%; margin-bottom: 0.5em;">
+        <img src="gandalf.png" style="float: left; width: 40%; margin-right: 1%; margin-bottom: 0.5em;">
+        <p style="clear: both;">
+
+        The left image is visualization of Frodo's polarity throughout the book, and the right image is of Gandalf's. 
+
+        <br><br>
+
+        <img src="sam.png" style="float: left; width: 38%; margin-right: 1%; margin-bottom: 0.5em;">
+        <img src="aragorn.png" style="float: left; width: 40%; margin-right: 1%; margin-bottom: 0.5em;">
+        <p style="clear: both;">
+
+        The left image is visualization of Sam's polarity throughout the book, and the right image is of Aragorn's. <b> Aragorn begins at the second half of the book.</b>
+
+        <br><br>
+
+        <img src="0.05.png" style="float: left; width: 38%; margin-right: 1%; margin-bottom: 0.5em;">
+        <img src="0.1.png" style="float: left; width: 40%; margin-right: 1%; margin-bottom: 0.5em;">
+        <p style="clear: both;">
+
+        The left image showcases a smoothing of all of the plots together at intervals of 5%. I took the average polarity of 5% portions of the book and then plotted them against the book's progression. The right image showcases a smoothing done at 10% segments of the book. It's clear that there's a trade off between smoothing out the curve and an actual valuation of the polarity at that specific location.
+
+          <h2>Further Improvements</h2>
+          To create better character polarity graphs, one key element I would improve would be to utilize a better sentiment analysis tool. For this project, I utilized the Vader lexicon, which maps each word to a certain polarity. However, it was quite limited and not able to fully encapsulate every single word, thus being able to succintly represent the polarity of what characters were saying. For improving the graphs, I would apply SciPy's library for interpolation so as to better understand the progression.
+          <br> <br> 
+
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://d3js.org/">D3.js - Data-Driven Documents</a></li>
+          <li><a href="http://www.html5webtemplates.co.uk">HTML 5 Templates</a>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

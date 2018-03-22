@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Fellowship of the Ring</title>
+  <link rel="shortcut icon" href="https://vignette.wikia.nocookie.net/lotrminecraftmod/images/8/8d/OneRing2.png/revision/latest?cb=20160708170029">
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css"/>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="finalproject.html">Character<span class="logo_colour">Analysis</span></a></h1>
+          <h2>The Lord of the Rings: The Fellowship of the Ring</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="selected"><a href="finalproject.html">Home</a></li>
+          <li><a href="chord2.html">Chord Visualization</a></li>
+          <li><a href="sentiment.html">Sentiment Analysis</a></li>
+          <li><a href="links.html">Data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+      <h1><center>Chord Diagram of Alphabetical Character Hierarchy</h1>
+      <meta charset="utf-8">
+      <style>
+      body {
+        font: 10px sans-serif;
+      }
+
+      svg text{
+        fill:grey;
+        font-size:11px;
+      }
+      svg .values text{
+        pointer-events:none;
+        stroke-width: 0.5px;
+      }
+      .groups:hover{
+        cursor:pointer;
+        font-weight:bold;
+      }
+      </style>
+      <body>
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+      <script>
+
+      var data = [
+      ['Pippin', 'Aragorn', 4],
+       ['Pippin', 'Gandalf', 6],
+       ['Pippin', 'Boromir', 12],
+       ['Pippin', 'Merry', 90],
+       ['Pippin', 'Frodo', 32],
+       ['Pippin', 'Legolas', 6],
+       ['Pippin', 'Bilbo', 0],
+       ['Pippin', 'Saruman', 0],
+       ['Pippin', 'Sam', 28],
+       ['Pippin', 'Gimli', 8],
+       ['Aragorn', 'Pippin', 4],
+       ['Aragorn', 'Gandalf', 12],
+       ['Aragorn', 'Boromir', 54],
+       ['Aragorn', 'Merry', 6],
+       ['Aragorn', 'Frodo', 42],
+       ['Aragorn', 'Legolas', 36],
+       ['Aragorn', 'Bilbo', 0],
+       ['Aragorn', 'Saruman', 0],
+       ['Aragorn', 'Sam', 8],
+       ['Aragorn', 'Gimli', 18],
+       ['Gandalf', 'Pippin', 6],
+       ['Gandalf', 'Aragorn', 12],
+       ['Gandalf', 'Boromir', 4],
+       ['Gandalf', 'Merry', 4],
+       ['Gandalf', 'Frodo', 90],
+       ['Gandalf', 'Legolas', 12],
+       ['Gandalf', 'Bilbo', 50],
+       ['Gandalf', 'Saruman', 40],
+       ['Gandalf', 'Sam', 16],
+       ['Gandalf', 'Gimli', 12],
+       ['Boromir', 'Pippin', 12],
+       ['Boromir', 'Aragorn', 54],
+       ['Boromir', 'Gandalf', 4],
+       ['Boromir', 'Merry', 12],
+       ['Boromir', 'Frodo', 40],
+       ['Boromir', 'Legolas', 22],
+       ['Boromir', 'Bilbo', 0],
+       ['Boromir', 'Saruman', 0],
+       ['Boromir', 'Sam', 4],
+       ['Boromir', 'Gimli', 14],
+       ['Merry', 'Pippin', 90],
+       ['Merry', 'Aragorn', 6],
+       ['Merry', 'Gandalf', 4],
+       ['Merry', 'Boromir', 12],
+       ['Merry', 'Frodo', 38],
+       ['Merry', 'Legolas', 6],
+       ['Merry', 'Bilbo', 0],
+       ['Merry', 'Saruman', 0],
+       ['Merry', 'Sam', 36],
+       ['Merry', 'Gimli', 4],
+       ['Frodo', 'Pippin', 32],
+       ['Frodo', 'Aragorn', 42],
+       ['Frodo', 'Gandalf', 90],
+       ['Frodo', 'Boromir', 40],
+       ['Frodo', 'Merry', 38],
+       ['Frodo', 'Legolas', 6],
+       ['Frodo', 'Bilbo', 38],
+       ['Frodo', 'Saruman', 0],
+       ['Frodo', 'Sam', 126],
+       ['Frodo', 'Gimli', 2],
+       ['Legolas', 'Pippin', 6],
+       ['Legolas', 'Aragorn', 36],
+       ['Legolas', 'Gandalf', 12],
+       ['Legolas', 'Boromir', 22],
+       ['Legolas', 'Merry', 6],
+       ['Legolas', 'Frodo', 6],
+       ['Legolas', 'Bilbo', 0],
+       ['Legolas', 'Saruman', 0],
+       ['Legolas', 'Sam', 8],
+       ['Legolas', 'Gimli', 28],
+       ['Bilbo', 'Pippin', 0],
+       ['Bilbo', 'Aragorn', 0],
+       ['Bilbo', 'Gandalf', 50],
+       ['Bilbo', 'Boromir', 0],
+       ['Bilbo', 'Merry', 0],
+       ['Bilbo', 'Frodo', 38],
+       ['Bilbo', 'Legolas', 0],
+       ['Bilbo', 'Saruman', 0],
+       ['Bilbo', 'Sam', 2],
+       ['Bilbo', 'Gimli', 0],
+       ['Saruman', 'Pippin', 0],
+       ['Saruman', 'Aragorn', 0],
+       ['Saruman', 'Gandalf', 40],
+       ['Saruman', 'Boromir', 0],
+       ['Saruman', 'Merry', 0],
+       ['Saruman', 'Frodo', 0],
+       ['Saruman', 'Legolas', 0],
+       ['Saruman', 'Bilbo', 0],
+       ['Saruman', 'Sam', 0],
+       ['Saruman', 'Gimli', 0],
+       ['Sam', 'Pippin', 28],
+       ['Sam', 'Aragorn', 8],
+       ['Sam', 'Gandalf', 16],
+       ['Sam', 'Boromir', 4],
+       ['Sam', 'Merry', 36],
+       ['Sam', 'Frodo', 126],
+       ['Sam', 'Legolas', 8],
+       ['Sam', 'Bilbo', 2],
+       ['Sam', 'Saruman', 0],
+       ['Sam', 'Gimli', 4],
+       ['Gimli', 'Pippin', 8],
+       ['Gimli', 'Aragorn', 18],
+       ['Gimli', 'Gandalf', 12],
+       ['Gimli', 'Boromir', 14],
+       ['Gimli', 'Merry', 4],
+       ['Gimli', 'Frodo', 2],
+       ['Gimli', 'Legolas', 28],
+       ['Gimli', 'Bilbo', 0],
+       ['Gimli', 'Saruman', 0],
+       ['Gimli', 'Sam', 4]
+      ];
+
+      var colors = {
+      "Frodo":         "#da4480"
+      ,"Gandalf":    "#5ab449"
+      ,"Sam":    "#7f5acd"
+      ,"Aragorn":        "#aab740"
+      ,"Legolas": "#ce58c0"
+      ,"Gimli":        "#50a26e"
+      ,"Boromir": "#d1434b"
+      ,"Pippin":      "#45c0bc"
+      ,"Merry":"#ce5929"
+      ,"Saruman": "#4e7bda"
+      ,"Bilbo":  "#d49d3c"
+      // ,"Norwich City":   "#6660a3"
+      // ,"Southampton":    "#7b853c"
+      // ,"Stoke City":     "#b58dde"
+      // ,"Sunderland":     "#97622e"
+      // ,"Swansea City":   "#609dd6"
+      // ,"Tottenham":      "#e29074"
+      // ,"Watford":        "#9c4b88"
+      // ,"West Bromwich":  "#ab505f"
+      // ,"West Ham Utd":   "#dc85b6"
+      };
+
+      var sortOrder =[
+      // Sam, Pippin,Saruman
+      // Aragorn. Bilbo, Boromi, Frodo, Gandalf, Gimli, Legolas, Merry, Pippin, Sam, Saruman
+      "Aragorn"
+      ,"Bilbo"
+      ,"Boromir"
+      ,"Frodo"
+      ,"Gandalf"
+      ,"Gimli"
+      ,"Legolas"
+      ,"Merry"
+      ,"Pippin"
+      ,"Sam"
+      ,"Saruman"
+      ];
+
+      function sort(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)); }
+
+      var ch = viz.ch().data(data)
+            .padding(.01)
+            .sort(sort)
+          .innerRadius(430)
+          .outerRadius(450)
+          .duration(1000)
+          .chordOpacity(0.3)
+          .labelPadding(.03)
+            .fill(function(d){ return colors[d];});
+
+      var width=1200, height=1100;
+
+      var svg = d3.select("body").append("svg").attr("height",height).attr("width",width);
+
+      svg.append("g").attr("transform", "translate(600,550)").call(ch);
+
+      // adjust height of frame in bl.ocks.org
+      d3.select(self.frameElement).style("height", height+"px").style("width", width+"px");     
+      </script>
+      
+
+    </div>
+</body>
+</html>

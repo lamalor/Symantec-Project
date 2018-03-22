@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Fellowship of the Ring</title>
+  <link rel="shortcut icon" href="https://vignette.wikia.nocookie.net/lotrminecraftmod/images/8/8d/OneRing2.png/revision/latest?cb=20160708170029">
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css"/>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="finalproject.html">Character<span class="logo_colour">Analysis</span></a></h1>
+          <h2>The Lord of the Rings: The Fellowship of the Ring</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="selected"><a href="finalproject.html">Home</a></li>
+          <li><a href="chord2.html">Chord Visualization</a></li>
+          <li><a href="sentiment.html">Sentiment Analysis</a></li>
+          <li><a href="links.html">Data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="banner"></div>
+      <div id="content">
+        <h1>Data Analysis & Visualization of Character Hierarchy: <i>The Fellowship of the Ring</i></h1>
+        <p> The project below is an analysis of character hierarchy in <i> The Lord of the Rings: The Fellowship of the Ring</i>. 
+
+        In creating this project, the first dilemma was deciding how to visualize 'hierarchy'; can it be measured through number of retweets, comments, or views? I considered platforms such as Facebook, Twitter, and WordPress as means of data scraping, but ran into privacy issues beyond my personal keys for accessing the platform's API. In observing the data between users in Facebook, one hits a wall between mutual friends or networks between people because of privacy restrictions. As for Twitter, the same could be said regarding who likes or retweets another individual. As such, I decided to work on a dataset in which I completely love: The Lord of the Rings. In creating this project, my first thought was to create <a href="http://datavizproject.com/wp-content/uploads/2015/11/all_books.png">arc diagrams</a>. This would have been beneficial in understanding a connection between characters in relation to how they are related. As such, I concluded to measure the influence of characters found in the book. 
+
+        <br><br>
+        The first step was to scrape the data, by which I downloaded a text file of the book, named 'FotR.txt' and utilized a Python Jupyter Notebook, with extractions found in 'Character Analysis.ipynb'. To clean the data up, I removed all annotations and then lower cased the words. From there, I utilized a dictionary of characters with the value as more dictionaries of other characters. For every paragraph of information, a character's interaction with another character's value was strengthened when their names appeared in the same paragraph together. The output of this dictionary was converted to a list of lists, and then the data was input into the script below. 
+
+        <br><br>
+
+        <h1 id="chordDia">Character Analysis Chord Diagram</h1>
+        <p> The interactive graph below showcases the number of interactions between each character with another character. The number next to the selected name equates to the number of time that character's name appears in the book, and the number next to other character's names during the hovering equates to the number of times the other character's name appears with the character being hovered.
+
+<!--         ***************************************************************************************/
+*    Title: Chord Diagram source code
+*    Author: Pasha
+*    License: GNU General Public License, version 3.
+*    Date: 2018
+*    Code version: 3.0
+*    Availability: https://bl.ocks.org/
+***************************************************************************************/ -->
+        <meta charset="utf-8">
+        <svg width="960" height="500">
+          <g transform="translate(400,250)"></g>
+        </svg>
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="http://vizjs.org/viz.v1.3.0.min.js"></script>
+        <script>
+          d3.select("g").call(viz.chord().data(getData()));
+          function getData(){
+          return [
+            //[source, target, value]
+            ['Pippin', 'Aragorn', 4],
+             ['Pippin', 'Gandalf', 6],
+             ['Pippin', 'Boromir', 12],
+             ['Pippin', 'Merry', 90],
+             ['Pippin', 'Frodo', 32],
+             ['Pippin', 'Legolas', 6],
+             ['Pippin', 'Bilbo', 0],
+             ['Pippin', 'Saruman', 0],
+             ['Pippin', 'Sam', 28],
+             ['Pippin', 'Gimli', 8],
+             ['Aragorn', 'Pippin', 4],
+             ['Aragorn', 'Gandalf', 12],
+             ['Aragorn', 'Boromir', 54],
+             ['Aragorn', 'Merry', 6],
+             ['Aragorn', 'Frodo', 42],
+             ['Aragorn', 'Legolas', 36],
+             ['Aragorn', 'Bilbo', 0],
+             ['Aragorn', 'Saruman', 0],
+             ['Aragorn', 'Sam', 8],
+             ['Aragorn', 'Gimli', 18],
+             ['Gandalf', 'Pippin', 6],
+             ['Gandalf', 'Aragorn', 12],
+             ['Gandalf', 'Boromir', 4],
+             ['Gandalf', 'Merry', 4],
+             ['Gandalf', 'Frodo', 90],
+             ['Gandalf', 'Legolas', 12],
+             ['Gandalf', 'Bilbo', 50],
+             ['Gandalf', 'Saruman', 40],
+             ['Gandalf', 'Sam', 16],
+             ['Gandalf', 'Gimli', 12],
+             ['Boromir', 'Pippin', 12],
+             ['Boromir', 'Aragorn', 54],
+             ['Boromir', 'Gandalf', 4],
+             ['Boromir', 'Merry', 12],
+             ['Boromir', 'Frodo', 40],
+             ['Boromir', 'Legolas', 22],
+             ['Boromir', 'Bilbo', 0],
+             ['Boromir', 'Saruman', 0],
+             ['Boromir', 'Sam', 4],
+             ['Boromir', 'Gimli', 14],
+             ['Merry', 'Pippin', 90],
+             ['Merry', 'Aragorn', 6],
+             ['Merry', 'Gandalf', 4],
+             ['Merry', 'Boromir', 12],
+             ['Merry', 'Frodo', 38],
+             ['Merry', 'Legolas', 6],
+             ['Merry', 'Bilbo', 0],
+             ['Merry', 'Saruman', 0],
+             ['Merry', 'Sam', 36],
+             ['Merry', 'Gimli', 4],
+             ['Frodo', 'Pippin', 32],
+             ['Frodo', 'Aragorn', 42],
+             ['Frodo', 'Gandalf', 90],
+             ['Frodo', 'Boromir', 40],
+             ['Frodo', 'Merry', 38],
+             ['Frodo', 'Legolas', 6],
+             ['Frodo', 'Bilbo', 38],
+             ['Frodo', 'Saruman', 0],
+             ['Frodo', 'Sam', 126],
+             ['Frodo', 'Gimli', 2],
+             ['Legolas', 'Pippin', 6],
+             ['Legolas', 'Aragorn', 36],
+             ['Legolas', 'Gandalf', 12],
+             ['Legolas', 'Boromir', 22],
+             ['Legolas', 'Merry', 6],
+             ['Legolas', 'Frodo', 6],
+             ['Legolas', 'Bilbo', 0],
+             ['Legolas', 'Saruman', 0],
+             ['Legolas', 'Sam', 8],
+             ['Legolas', 'Gimli', 28],
+             ['Bilbo', 'Pippin', 0],
+             ['Bilbo', 'Aragorn', 0],
+             ['Bilbo', 'Gandalf', 50],
+             ['Bilbo', 'Boromir', 0],
+             ['Bilbo', 'Merry', 0],
+             ['Bilbo', 'Frodo', 38],
+             ['Bilbo', 'Legolas', 0],
+             ['Bilbo', 'Saruman', 0],
+             ['Bilbo', 'Sam', 2],
+             ['Bilbo', 'Gimli', 0],
+             ['Saruman', 'Pippin', 0],
+             ['Saruman', 'Aragorn', 0],
+             ['Saruman', 'Gandalf', 40],
+             ['Saruman', 'Boromir', 0],
+             ['Saruman', 'Merry', 0],
+             ['Saruman', 'Frodo', 0],
+             ['Saruman', 'Legolas', 0],
+             ['Saruman', 'Bilbo', 0],
+             ['Saruman', 'Sam', 0],
+             ['Saruman', 'Gimli', 0],
+             ['Sam', 'Pippin', 28],
+             ['Sam', 'Aragorn', 8],
+             ['Sam', 'Gandalf', 16],
+             ['Sam', 'Boromir', 4],
+             ['Sam', 'Merry', 36],
+             ['Sam', 'Frodo', 126],
+             ['Sam', 'Legolas', 8],
+             ['Sam', 'Bilbo', 2],
+             ['Sam', 'Saruman', 0],
+             ['Sam', 'Gimli', 4],
+             ['Gimli', 'Pippin', 8],
+             ['Gimli', 'Aragorn', 18],
+             ['Gimli', 'Gandalf', 12],
+             ['Gimli', 'Boromir', 14],
+             ['Gimli', 'Merry', 4],
+             ['Gimli', 'Frodo', 2],
+             ['Gimli', 'Legolas', 28],
+             ['Gimli', 'Bilbo', 0],
+             ['Gimli', 'Saruman', 0],
+             ['Gimli', 'Sam', 4]
+            ]
+          }
+        </script> 
+
+          For example, hovering over Frodo, we see that of 414 interactions, he has 126 with Sam, and then 90 with Gandalf. This is visually represented by the <i>total area</i> taken up by Sam, as well as the number displayed. Assuming influence has a direct relationship with interactions between characters, what if the most influential character were removed? Who would be the most influential character then? Removing Frodo from the graph, we see that Gandalf is the most influential character. 
+
+          <br><br>
+          <font color="red"><i>Non-Interactive Graph</i></font>
+          <br>
+          <img id="frodoless" src="frodoless.png" alt="No Frodo">
+
+
+          <br> <br> 
+          <h2>Further Improvements</h2>
+          To create a better means of hierarchical analysis, I considered using <a href="https://nlp.stanford.edu/">The Stanford Natural Language Processing Group</a> as a means for analyzing pronoun reference to better estimate weights on how one is being spoken to and reference, beyond just the direct naming of characters. The con of this data analysis also is that it assumes that character relations are when both are named within a set of words, whereas this may not be so at all; a character's name being spoken more frequently does not necessarily mean he has more influence. However, it can be a good indicator for influence. Future renditions would also have studied sklearn and tensor flow as well.
+
+          <br> <br> 
+
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://d3js.org/">D3.js - Data-Driven Documents</a></li>
+          <li><a href="http://www.html5webtemplates.co.uk">HTML 5 Templates</a>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
